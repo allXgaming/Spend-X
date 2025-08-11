@@ -33,9 +33,9 @@
         body {
             background-color: var(--dark-bg);
             color: var(--text-light);
-            min-height: 100%; /* Changed from height to min-height */
-            display: flex;
-            flex-direction: column;
+            min-height: 100%;
+            display: grid; /* Using Grid for robust layout */
+            grid-template-rows: 1fr auto; /* Main content takes available space, ads take their own space */
             overflow-x: hidden;
             background-image: 
                 radial-gradient(circle at 20% 30%, rgba(150, 0, 255, 0.2) 0%, transparent, 30%),
@@ -44,11 +44,11 @@
         }
         
         .main-content-wrapper {
-            flex: 1 0 auto; /* This is the key for the sticky footer */
             display: flex;
             flex-direction: column;
             width: 100%;
             position: relative;
+            min-height: 100vh; /* Ensure it takes at least the full viewport height */
         }
 
         .container {
@@ -56,7 +56,7 @@
             width: 100%;
             margin: 0 auto;
             padding: 2rem;
-            flex-grow: 1; /* This pushes the footer to the bottom */
+            flex-grow: 1; /* Pushes footer to the bottom */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -102,7 +102,6 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            flex-shrink: 0;
         }
 
         @keyframes pulse { 0% { text-shadow: 0 0 30px rgba(150, 0, 255, 0.5); transform: scale(1); } 100% { text-shadow: 0 0 50px rgba(0, 240, 255, 0.7), 0 0 80px rgba(150, 0, 255, 0.5); transform: scale(1.02); } }

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Multiplayer Ludo Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen" class="screen">
+    <div class="login-container">
+      <h1>Ludo Multiplayer</h1>
+      <div class="form-group">
+        <input type="text" id="player-name" placeholder="Enter your name" maxlength="12">
+      </div>
+      <button id="login-btn" class="btn">Join Game</button>
+    </div>
+  </div>
+
+  <!-- Lobby Screen -->
+  <div id="lobby-screen" class="screen hidden">
+    <div class="lobby-container">
+      <h1>Game Lobby</h1>
+      <div class="room-actions">
+        <button id="create-room-btn" class="btn">Create Room</button>
+        <div class="or-divider">OR</div>
+        <div class="join-room">
+          <input type="text" id="room-code" placeholder="Enter room code">
+          <button id="join-room-btn" class="btn">Join Room</button>
+        </div>
+      </div>
+      <div id="room-info" class="hidden">
+        <h2>Room Code: <span id="display-room-code"></span></h2>
+        <button id="copy-room-code" class="btn small">Copy Code</button>
+        <div class="players-list">
+          <h3>Players (<span id="player-count">1</span>/4):</h3>
+          <ul id="players"></ul>
+        </div>
+        <button id="start-game-btn" class="btn" disabled>Start Game</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="game-screen" class="screen hidden">
+    <div class="game-container">
+      <div class="game-header">
+        <div class="room-info">Room: <span id="game-room-code"></span></div>
+        <div class="turn-indicator">Current Turn: <span id="current-player"></span></div>
+      </div>
+
+      <div class="game-board"></div>
+
+      <div class="game-controls">
+        <div class="dice-container">
+          <div id="dice" class="dice">0</div>
+          <button id="roll-dice-btn" class="btn" disabled>Roll Dice</button>
+        </div>
+        <div class="player-pawns"></div>
+      </div>
+
+      <div class="game-chat">
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-input">
+          <input type="text" id="chat-input" placeholder="Type your message...">
+          <button id="send-chat-btn" class="btn small">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Winner Screen -->
+  <div id="winner-screen" class="screen hidden">
+    <div class="winner-container">
+      <h1>Game Over!</h1>
+      <h2 id="winner-name"></h2>
+      <button id="play-again-btn" class="btn">Play Again</button>
+    </div>
+  </div>
+
+  <!-- Sounds -->
+  <audio id="dice-sound" src="assets/sounds/dice-roll.mp3" preload="auto"></audio>
+  <audio id="move-sound" src="assets/sounds/move.mp3" preload="auto"></audio>
+  <audio id="win-sound" src="assets/sounds/win.mp3" preload="auto"></audio>
+  <audio id="kill-sound" src="assets/sounds/kill.mp3" preload="auto"></audio>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <!-- Main script (module) -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

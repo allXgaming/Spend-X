@@ -1,0 +1,66 @@
+/* Base */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f5f5f5;color:#333;height:100vh;overflow:hidden}
+
+/* Screens */
+.screen{width:100%;height:100vh;display:flex;justify-content:center;align-items:center;transition:all .3s}
+.hidden{display:none!important}
+
+/* Buttons */
+.btn{background:#4CAF50;color:#fff;border:0;padding:10px 20px;border-radius:5px;cursor:pointer;font-size:16px;margin:8px}
+.btn:hover{background:#45a049}
+.btn:disabled{background:#ccc;cursor:not-allowed}
+.btn.small{padding:6px 10px;font-size:14px}
+
+/* Login */
+.login-container{background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);text-align:center;width:90%;max-width:400px}
+.login-container h1{color:#4CAF50;margin-bottom:16px}
+.form-group input{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px}
+
+/* Lobby */
+.lobby-container{background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);width:90%;max-width:500px;text-align:center}
+.or-divider{margin:14px 0;position:relative}
+.or-divider::before,.or-divider::after{content:"";position:absolute;height:1px;background:#ddd;top:50%;width:45%}
+.or-divider::before{left:0}.or-divider::after{right:0}
+.join-room{display:flex;gap:10px}
+.join-room input{flex:1;padding:10px;border:1px solid #ddd;border-radius:6px}
+.players-list{margin:18px 0;text-align:left}
+.players-list li{background:#f9f9f9;padding:8px;margin:6px 0;border-radius:6px}
+
+/* Game */
+.game-container{width:100%;height:100vh;display:flex;flex-direction:column;background:#f0f0f0}
+.game-header{background:#4CAF50;color:#fff;padding:10px;display:flex;justify-content:space-between}
+.game-board{flex:1;display:flex;justify-content:center;align-items:center;padding:20px;position:relative}
+.board{width:90vmin;height:90vmin;max-width:500px;max-height:500px;background:#fff;border-radius:10px;display:grid;grid-template-columns:repeat(15,1fr);grid-template-rows:repeat(15,1fr);box-shadow:0 4px 8px rgba(0,0,0,.1)}
+.cell{border:1px solid #eee;position:relative}
+.path-cell{background:#fafafa}
+.home-cell{background:#e9e9e9}
+.start-cell{border-radius:50%}
+.red-start{background:rgba(255,0,0,.18)}.blue-start{background:rgba(0,0,255,.18)}
+.green-start{background:rgba(0,128,0,.18)}.yellow-start{background:rgba(255,255,0,.18)}
+.safe-cell{background:#d4edda}
+
+.pawn{width:60%;height:60%;border-radius:50%;position:absolute;top:20%;left:20%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;z-index:10;box-shadow:0 2px 4px rgba(0,0,0,.2);cursor:pointer;transition:transform .2s}
+.pawn:hover{transform:scale(1.06)}
+.pawn.red{background:#dc3545}.pawn.blue{background:#007bff}.pawn.green{background:#28a745}.pawn.yellow{background:#ffc107;color:#333}
+
+.game-controls{display:flex;justify-content:space-between;padding:10px;background:#fff;border-top:1px solid #ddd}
+.dice-container{display:flex;align-items:center;gap:10px}
+.dice{width:50px;height:50px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;box-shadow:0 2px 4px rgba(0,0,0,.15);transition:transform .5s}
+.dice.rolling{animation:roll .5s infinite}
+@keyframes roll{0%{transform:rotate(0)}25%{transform:rotate(90deg)}50%{transform:rotate(180deg)}75%{transform:rotate(270deg)}100%{transform:rotate(360deg)}}
+
+.game-chat{position:fixed;bottom:0;right:0;width:320px;background:#fff;border-left:1px solid #ddd;border-top:1px solid #ddd;border-radius:6px 0 0 0;display:flex;flex-direction:column;max-height:40vh}
+.chat-messages{flex:1;overflow-y:auto;padding:10px}
+.chat-message{margin-bottom:10px;padding:6px 10px;border-radius:6px;background:#f1f1f1}
+.chat-message .sender{font-weight:700;color:#4CAF50}
+.chat-input{display:flex;padding:10px;border-top:1px solid #ddd}
+.chat-input input{flex:1;padding:8px;border:1px solid #ddd;border-radius:6px 0 0 6px}
+.chat-input button{border-radius:0 6px 6px 0}
+
+/* Winner */
+.winner-container{background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.1);text-align:center;width:90%;max-width:400px}
+.winner-container h1{color:#4CAF50;margin-bottom:12px}
+
+/* Responsive */
+@media(max-width:768px){.game-controls{flex-direction:column}.game-chat{position:static;width:100%;max-height:200px}}

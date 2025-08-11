@@ -33,9 +33,6 @@
         body {
             background-color: var(--dark-bg);
             color: var(--text-light);
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
             overflow-x: hidden;
             background-image: 
                 radial-gradient(circle at 20% 30%, rgba(150, 0, 255, 0.2) 0%, transparent, 30%),
@@ -43,13 +40,13 @@
                 linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
         }
         
-        .main-content-wrapper {
-            display: flex;
-            flex-direction: column;
+        .frame-wrapper {
+            position: relative;
             height: 100vh; /* Takes exactly 100% of the viewport height */
             width: 100%;
-            position: relative;
-            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Hide particles overflow from the frame */
         }
 
         .container {
@@ -57,12 +54,13 @@
             width: 100%;
             margin: 0 auto;
             padding: 2rem;
-            flex-grow: 1; /* This pushes the footer down */
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            z-index: 1;
         }
         
         .logo { font-size: 9rem; font-weight: 700; margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink)); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 30px rgba(150, 0, 255, 0.5); letter-spacing: -0.03em; animation: pulse 2.5s infinite alternate; position: relative; }
@@ -75,13 +73,20 @@
         .open-btn:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(0, 240, 255, 0.7); }
         .open-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink)); transition: all 0.4s ease; z-index: -1; }
         .open-btn:hover::before { left: 0; }
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
-        .footer { padding: 1.5rem 2rem; text-align: center; font-size: 0.9rem; color: var(--text-dim); display: flex; justify-content: center; gap: 2.5rem; flex-shrink: 0; }
+        .particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .footer { padding: 1.5rem 2rem; text-align: center; font-size: 0.9rem; color: var(--text-dim); display: flex; justify-content: center; gap: 2.5rem; flex-shrink: 0; z-index: 1; }
         .footer a { color: var(--text-dim); text-decoration: none; transition: all 0.3s ease; position: relative; font-weight: 500; letter-spacing: 0.05em; padding: 0.5rem 0; }
         .footer a::after { content: ""; position: absolute; width: 0; height: 2px; background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); bottom: 0; left: 0; transition: width 0.3s ease; }
         .footer a:hover { color: var(--neon-blue); }
         .footer a:hover::after { width: 100%; }
-        .corner-decoration { position: fixed; width: 150px; height: 150px; pointer-events: none; z-index: 0; }
+        
+        .corner-decoration {
+            position: absolute; /* Changed from fixed to be relative to frame-wrapper */
+            width: 150px;
+            height: 150px;
+            pointer-events: none;
+            z-index: 0;
+        }
         .corner-tl { top: 0; left: 0; border-top: 3px solid var(--neon-blue); border-left: 3px solid var(--neon-blue); border-radius: 20px 0 0 0; }
         .corner-tr { top: 0; right: 0; border-top: 3px solid var(--neon-purple); border-right: 3px solid var(--neon-purple); border-radius: 0 20px 0 0; }
         .corner-bl { bottom: 0; left: 0; border-bottom: 3px solid var(--neon-purple); border-left: 3px solid var(--neon-purple); border-radius: 0 0 0 20px; }
@@ -106,13 +111,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="particles"></div>
-    <div class="corner-decoration corner-tl"></div>
-    <div class="corner-decoration corner-tr"></div>
-    <div class="corner-decoration corner-bl"></div>
-    <div class="corner-decoration corner-br"></div>
     
-    <div class="main-content-wrapper">
+    <div class="frame-wrapper">
+        <div class="particles"></div>
+        <div class="corner-decoration corner-tl"></div>
+        <div class="corner-decoration corner-tr"></div>
+        <div class="corner-decoration corner-bl"></div>
+        <div class="corner-decoration corner-br"></div>
+        
         <div class="container">
             <h1 class="logo">Hi-Fi</h1>
             <div class="status">Coming Soon</div>
